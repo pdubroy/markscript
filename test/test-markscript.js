@@ -51,5 +51,9 @@ test('cli', function(t) {
   assertEmpty(p.stdout, 'successful run produces no output');
   assertEmpty(p.stderr, 'stderr should be empty');
 
+  p = runCli(['README.md']);
+  assertEmpty(p.stdout, 'README produces no output');
+  assertEmpty(p.stderr, 'README produces no errors');
+
   t.end();
 });
