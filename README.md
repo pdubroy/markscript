@@ -11,6 +11,8 @@ sure that your documentation is up-to-date.
 
 `npm install markscript`
 
+[![NPM](https://nodei.co/npm/markscript.png?compact=true)](https://nodei.co/npm/markscript/)
+
 ## Usage
 
 `markscript FILES...`
