@@ -1,5 +1,6 @@
 {
   "name": "markscript",
+  "description": "Execute JavaScript embedded in Markdown files",
   "version": "0.1.0",
   "author": "Patrick Dubroy <pdubroy@gmail.com> (http://dubroy.com)",
   "license": "MIT",
