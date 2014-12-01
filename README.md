@@ -5,7 +5,7 @@ useful for writing executable documentation, or "[literate-style][lp]"
 JavaScript code. You can run Markscript as part of your build process to make
 sure that your documentation is up-to-date.
 
-[lp]: http://en.wikipedia.org/wiki/Literate_programming)
+[lp]: http://en.wikipedia.org/wiki/Literate_programming
 
 [![NPM](https://nodei.co/npm/markscript.png?compact=true)](https://nodei.co/npm/markscript/)
 
