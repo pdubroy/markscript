@@ -38,6 +38,10 @@ You can also use `require` and `console.log`, just like a regular Node script:
 require('assert').equal(y, 'fantastisch');
 ```
 
+Oh, in case it wasn't obvious -- this README itself an example of executable
+documentation. This project's tests will fail if the assertion above fails, or
+if any other errors occur.
+
 ## Development
 
 After checking out the source, run `npm install` in the project directory to
