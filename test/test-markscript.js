@@ -1,3 +1,7 @@
+/* eslint-env node */
+
+'use strict';
+
 var assert = require('assert'),
     fs = require('fs'),
     fork = require('child_process').fork,

@@ -1,4 +1,7 @@
 #!/usr/bin/env node
+/* eslint-env node */
+
+'use strict';
 
 var commander = require('commander'),
     fs = require('fs'),
