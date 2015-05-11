@@ -25,7 +25,9 @@ test('basic', function (t) {
   t.throws(function() { evaluate('```\ndoesn\'t parse'); }, /SyntaxError/);
 
   t.equal(evaluate('    non-fenced code\n    block\n', undefined));
-  t.equal(evaluate('```blah\n3'), 3, 'info string is ignored');
+  t.equal(evaluate('```javascript\n3'), 3, 'can specify language in info string');
+  t.equal(evaluate('```js\n3'), 3, "works when language is 'js'");
+  t.equal(evaluate('```blah\nNot#js'), undefined, 'other languages are ignored');
 
   t.equal(evaluate('Some `inline code`'), undefined);
 
