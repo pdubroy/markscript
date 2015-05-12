@@ -21,7 +21,7 @@ function readAll(stream, cb) {
   stream.on('end', function() { cb(content); });
 }
 
-test('basic', function (t) {
+test('basic', function(t) {
   t.equal(evaluateFile('data/test1.md'), 3, 'test1.md');
   t.equal(evaluateFile('data/test2.md'), 'joy!', 'test2.md');
 
@@ -34,6 +34,18 @@ test('basic', function (t) {
   t.equal(evaluate('```blah\nNot#js'), undefined, 'other languages are ignored');
 
   t.equal(evaluate('Some `inline code`'), undefined);
+
+  t.end();
+});
+
+test('assert', function(t) {
+  t.equal(evaluate('```\nassert(true); "ok"'), 'ok', 'assert works');
+  t.equal(evaluate('```\nassert.equal(true, true); "ok"'), 'ok', 'assert works');
+  t.equal(evaluate('```\nassert.ok(true); "ok"'), 'ok', 'assert works');
+
+  t.throws(function() {
+    evaluate('```\nassert(false); "ok"');
+  }, /AssertionError/, 'assert is not caught by markscript');
 
   t.end();
 });
