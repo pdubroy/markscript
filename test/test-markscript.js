@@ -50,6 +50,22 @@ test('assert', function(t) {
   t.end();
 });
 
+test('hidden scripts', function(t) {
+  var input = ['<script type="text/markscript">var deadbeef, x = 4;</script>',
+               '',
+               '```',
+               'typeof x'].join('\n');
+  t.equal(evaluate(input), 'number', '<script> tag is executed');
+
+  var newInput = input.replace('markscript', 'fooscript');
+  t.equal(evaluate(newInput), 'undefined', 'not executed when type is wrong');
+
+  newInput = input.replace('type=', 'foo="bar" type=');
+  t.equal(evaluate(newInput), 'undefined', 'not executed with other attrs');
+
+  t.end();
+});
+
 function runCli(args) {
   return fork('cli.js', args, { silent: true });
 }
