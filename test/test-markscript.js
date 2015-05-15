@@ -75,6 +75,26 @@ test('hidden scripts', function(t) {
   t.end();
 });
 
+test('transformNextBlock', function(t) {
+  var input = [
+      '<script type="text/markscript">',
+      '  var x = 3;',
+      '  markscript.transformNextBlock(function(code) {',
+      '    return code.replace("zzz", "x");',
+      '  });',
+      '</script>',
+      '',
+      '```',
+      'typeof zzz'].join('\n');
+
+  t.equal(evaluate(input), 'number', 'next block is transformed');
+
+  var newInput = input + '\n```\n```\ntypeof zzz';
+  t.equal(evaluate(newInput), 'undefined', 'only next block is transformed');
+
+  t.end();
+});
+
 function runCli(args) {
   return fork('cli.js', args, { silent: true });
 }
