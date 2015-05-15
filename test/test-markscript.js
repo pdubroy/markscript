@@ -61,7 +61,16 @@ test('hidden scripts', function(t) {
   t.equal(evaluate(newInput), 'undefined', 'not executed when type is wrong');
 
   newInput = input.replace('type=', 'foo="bar" type=');
-  t.equal(evaluate(newInput), 'undefined', 'not executed with other attrs');
+  t.equal(evaluate(newInput), 'undefined', 'not executed without type attr');
+
+  newInput = input.replace('markscript', 'markscript" anotherAttr="foo');
+  t.equal(evaluate(newInput), 'number', 'executed with extra attrs');
+
+  newInput = input.replace('</script>', '</script\t\t>');
+  t.equal(evaluate(newInput), 'number', 'executed with weird end tag');
+
+  newInput = input.replace('<script>', '  <script>');
+  t.equal(evaluate(newInput), 'number', 'executed with leading spaces');
 
   t.end();
 });
