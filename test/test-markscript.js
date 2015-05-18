@@ -35,6 +35,11 @@ test('basic', function(t) {
 
   t.equal(evaluate('Some `inline code`'), undefined);
 
+  // A case that previously caused a crash, because the AST it produced was
+  // not as expected.
+  var html = '<h2 id="semantics">Semantics, Operations, and Attributes</h2>\n';
+  t.equal(evaluate(html), undefined, 'embedded HTML does not cause a crash');
+
   t.end();
 });
 
