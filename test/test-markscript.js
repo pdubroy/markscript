@@ -82,6 +82,26 @@ test('hidden scripts', function(t) {
   t.end();
 });
 
+test('hidden scripts using comments', function(t) {
+  var input = ['<!-- @markscript var deadbeef, x = 4; -->',
+               '',
+               '```',
+               'typeof x',
+               '```'].join('\n');
+  t.equal(evaluate(input), 'number', 'code is executed inside HTML comment');
+
+  var newInput = input.replace('markscript', 'fooscript');
+  t.equal(evaluate(newInput), 'undefined', 'not executed when tag is wrong');
+
+  newInput = input.replace('<!-- ', '<!--');
+  t.equal(evaluate(newInput), 'undefined', 'not executed if no space before `@`');
+
+  newInput = input.replace('-->', '-- >');
+  t.equal(evaluate(newInput), 'undefined', 'not executed if end comment is weird');
+
+  t.end();
+});
+
 test('transformNextBlock', function(t) {
   var input = [
       '<script type="text/markscript">',
